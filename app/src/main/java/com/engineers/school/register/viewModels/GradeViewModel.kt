@@ -1,8 +1,12 @@
 package com.engineers.school.register.viewModels
 
-import android.arch.lifecycle.ViewModel
-import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import com.engineers.school.register.repositories.GradesRepository
 
-class GradeViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
-    val
+class GradeViewModel(val repo: GradesRepository) : ViewModel() {
+
+    fun getGrades(studentId: Long): List<Int> {
+        return repo.getGrades(studentId)
+    }
+
 }
