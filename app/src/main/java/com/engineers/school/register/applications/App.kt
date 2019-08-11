@@ -2,9 +2,9 @@ package com.engineers.school.register.applications
 
 import android.app.Application
 import android.os.StrictMode
-import com.engineers.school.register.repositories.GradesRepository
-import com.engineers.school.register.repositories.GradeRemoteRepository
-import com.engineers.school.register.viewModels.GradeViewModel
+import com.engineers.school.register.repositories.CourseSummaryRemoteRepository
+import com.engineers.school.register.repositories.CourseSummaryRepository
+import com.engineers.school.register.viewModels.CourseSummaryViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.android.viewmodel.dsl.viewModel
@@ -14,10 +14,10 @@ import org.koin.dsl.module
 class App : Application() {
     private val appModule = module {
 
-        single { GradesRepository(GradeRemoteRepository.create()) }
+        single {CourseSummaryRepository(CourseSummaryRemoteRepository.create())}
 
         viewModel {
-            GradeViewModel(get())
+            CourseSummaryViewModel(get())
         }
     }
 

@@ -14,7 +14,7 @@
             android:networkSecurityConfig="@xml/network_security_config"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".activities.GradesActivity"
+                android:name=".activities.CourseSummariesActivity"
                 android:label="@string/title_activity_grades"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
