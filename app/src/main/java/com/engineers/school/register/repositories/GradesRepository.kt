@@ -1,9 +1,13 @@
 package com.engineers.school.register.repositories
 
-class GradesRepository {
-    val list: List<Int> = listOf(1, 2, 3, 4, 5)
+import com.engineers.school.register.entities.Grade
 
-    fun getGrades(studentId: Long): List<Int> {
-        return list
+class GradesRepository(private val gradesRemoteRepository: GradeRemoteRepository) {
+
+    fun getGrades(studentId: Long): List<Grade> {
+        return gradesRemoteRepository
+            .getGrades(studentId)
+            .execute()
+            .body()!!
     }
 }
