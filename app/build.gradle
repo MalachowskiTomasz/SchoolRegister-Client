@@ -67,6 +67,9 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
 
+    //Image Loader
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
     //Testing libraries
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.assertj:assertj-core:3.13.1'

@@ -2,16 +2,20 @@ package com.engineers.school.register.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.engineers.school.register.R
 import com.engineers.school.register.adapters.CourseSummaryAdapter.CourseSummaryViewHolder
 import com.engineers.school.register.entities.CourseSummary
+import com.nostra13.universalimageloader.core.ImageLoader
 
-class CourseSummaryAdapter : RecyclerView.Adapter<CourseSummaryViewHolder>() {
+open class CourseSummaryAdapter : RecyclerView.Adapter<CourseSummaryViewHolder>() {
+    private val imageLoader : ImageLoader = ImageLoader.getInstance()
 
-    private val courseSummaries = mutableListOf<CourseSummary>()
+    val courseSummaries = mutableListOf<CourseSummary>()
 
     class CourseSummaryViewHolder(val view: ConstraintLayout) : RecyclerView.ViewHolder(view)
 
@@ -22,8 +26,13 @@ class CourseSummaryAdapter : RecyclerView.Adapter<CourseSummaryViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CourseSummaryViewHolder, position: Int) {
-        holder.view.findViewById<TextView>(R.id.nameTextView).text = courseSummaries[position].name
+        val name = courseSummaries[position].name
+        holder.view.findViewById<TextView>(R.id.nameTextView).text = name
         holder.view.findViewById<TextView>(R.id.averageMarkTextView).text = courseSummaries[position].averageMark.toString()
+        val imageView = holder.view.findViewById<ImageView>(R.id.courseImageView)
+        imageLoader.displayImage(courseSummaries[position].imageUrl, imageView)
+
+        holder.view.setOnClickListener { Toast.makeText(holder.view.context, name, Toast.LENGTH_SHORT).show() }
     }
 
     override fun getItemCount(): Int {
@@ -33,6 +42,10 @@ class CourseSummaryAdapter : RecyclerView.Adapter<CourseSummaryViewHolder>() {
     fun updateItems(items: List<CourseSummary>) {
         courseSummaries.clear()
         courseSummaries.addAll(items)
+        notifyChanged()
+    }
+
+    open fun notifyChanged() {
         notifyDataSetChanged()
     }
 }
